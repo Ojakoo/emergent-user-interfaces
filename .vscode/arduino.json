@@ -1,0 +1,7 @@
+{
+    "port": "/dev/ttyACM1",
+    "board": "arduino:mbed_nano:nano33ble",
+    "programmer": "stlink",
+    "sketch": "arduino/arduino.ino",
+    "output": "arduino/build"
+}
