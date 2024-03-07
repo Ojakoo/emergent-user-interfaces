@@ -1,85 +1,68 @@
-#include <Arduino_LSM9DS1.h>
-
-float x, y, z;
-int degreesX = 0;
-int degreesY = 0;
-
-enum STATE {
-  IDLE,
-  START,
-};
-
-int commandByte;
-
-int state = IDLE;
+#include "Mouse.h"
+#include <Adafruit_LSM6DS33.h>
+Adafruit_LSM6DS33 lsm6ds;
 
 void setup(void) {
-  // set led pins as outputs
-  pinMode(LEDR, OUTPUT);
-  pinMode(LEDG, OUTPUT);
-  pinMode(LEDB, OUTPUT);
-  pinMode(LED_PWR, OUTPUT);
-  pinMode(LED_BUILTIN, OUTPUT);
-
-  Serial.begin(14400, SERIAL_8N1);
-
-  digitalWrite(LEDB, HIGH);
-  digitalWrite(LEDG, HIGH);
-  digitalWrite(LEDR, HIGH);
-
-  while (!Serial);
-
-  digitalWrite(LEDR, LOW);
-
-  if (!IMU.begin()) {
-    digitalWrite(LEDG, LOW);
-    while (1);
+  if (!lsm6ds.begin_I2C()){
+    delay(100);
   }
 
-  digitalWrite(LEDG, HIGH);
+  Mouse.begin();
 }
 
-void read_acceleration() {
-  if (!IMU.accelerationAvailable()) {
-    return;
-  }
-  
-  IMU.readAcceleration(x, y, z);
-  
-  Serial.print(x);
-  Serial.print(',');
-  Serial.print(y);
-  Serial.print(',');
-  Serial.print(z);
-  Serial.println();
-}
+enum STATE {
+  NONE,
+  LEFT,
+  RIGHT,
+};
+
+int pressedButton;
 
 void loop(void) {
-  if ( Serial.available() > 0 ) {
-    commandByte = Serial.read();
+  sensors_event_t accel, gyro, magn;
+
+  lsm6ds.getEvent(&accel, &gyro, &magn);
+
+  if (
+    accel.acceleration.x < 0.6 && 
+    accel.acceleration.y < 0.6 &&
+    accel.acceleration.x > -0.6 &&
+    accel.acceleration.y > -0.6 
+  ) {
+    if (pressedButton == NONE) {
+      if (gyro.gyro.z > 0.4) {
+        Mouse.press(MOUSE_LEFT);
+        pressedButton = LEFT;
+        delay(400);
+      }
+      
+      if (gyro.gyro.z < -0.4) {
+        Mouse.press(MOUSE_RIGHT);
+        pressedButton = RIGHT;
+        delay(400);
+      }
+    } else {
+      if (
+        pressedButton == LEFT && 
+        gyro.gyro.z < -0.4
+      ) {
+        Mouse.release(MOUSE_LEFT);
+        pressedButton = NONE;
+        delay(1000);
+      }
+      
+      if (
+        pressedButton == RIGHT &&
+        gyro.gyro.z > 0.4
+      ) {
+        Mouse.release(MOUSE_RIGHT);
+        pressedButton = NONE;
+        delay(1000);
+      }
+    }
+  } else {
+    Mouse.move(accel.acceleration.x, accel.acceleration.y, 0);
   }
 
-  switch (commandByte) {
-  case IDLE:
-    state = IDLE;
-    break;
-  case START:
-    state = START;
-    break;
-  }
-
-  switch(state) {
-    case IDLE:
-      delay(500);
-      digitalWrite(LEDR, LOW);
-      delay(500);
-      digitalWrite(LEDR, HIGH);
-      break;
-    case START:
-      read_acceleration();
-      break;
-  }
-  
-  read_acceleration();
-  delay(100);
+  delay(10);
 }
