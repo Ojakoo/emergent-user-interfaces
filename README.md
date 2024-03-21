@@ -3,7 +3,7 @@
 ## Development
 
 * Setup vscode with the recommended extensions
-* Install the required arduino packages with Arduino Library Manager (ctrl+shift+p): 
+* Install the required arduino packages with Arduino Library Manager (ctrl+shift+p):
   * Adafruit LSM6DS, Version 4.7.2
   * Arduino Mouse, 1.0.1
 * Install the required arduino packages with Arduino Board Manager (ctrl+shift+p):
@@ -31,7 +31,7 @@ MODE="0666"
 ## Hardware
 
 * [Arduino Micro](https://docs.arduino.cc/hardware/micro/)
-* [Adaafruit LSM6D33 + LIS3MDL 9-DoF IMU](https://www.adafruit.com/product/4485)
+* [Adafruit LSM6D33 + LIS3MDL 9-DoF IMU](https://www.adafruit.com/product/4485)
 
 ## Library references
 
