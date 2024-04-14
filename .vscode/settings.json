@@ -1,10 +1,13 @@
-{   
-    "arduino.enableUSBDetection": true,
-    "arduino.useArduinoCli": true,
-    "arduino.disableIntelliSenseAutoGen": true,
-    "C_Cpp.errorSquiggles": "disabled",
-    "files.associations": {
-        "Dockerfile.*": "dockerfile",
-        "*.tcc": "cpp"
-    }
+{
+  "arduino.enableUSBDetection": true,
+  "arduino.useArduinoCli": true,
+  "arduino.disableIntelliSenseAutoGen": true,
+  "C_Cpp.errorSquiggles": "disabled",
+  "files.associations": {
+    "Dockerfile.*": "dockerfile",
+    "*.tcc": "cpp"
+  },
+  "remote.extensionKind": {
+    "ms-vscode.vscode-serial-monitor": ["workspace"]
+  }
 }

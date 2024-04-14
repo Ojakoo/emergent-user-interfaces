@@ -2,12 +2,12 @@
 
 ## Development
 
-* Setup vscode with the recommended extensions
-* Install the required arduino packages with Arduino Library Manager (ctrl+shift+p):
-  * Adafruit LSM6DS, Version 4.7.2
-  * Arduino Mouse, 1.0.1
-* Install the required arduino packages with Arduino Board Manager (ctrl+shift+p):
-  * Arduino AVR Boards, 1.8.6
+- Setup vscode with the recommended extensions
+- Install the required arduino packages with Arduino Library Manager (ctrl+shift+p):
+  - Adafruit LSM6DS, Version 4.7.2
+  - Arduino Mouse, 1.0.1
+- Install the required arduino packages with Arduino Board Manager (ctrl+shift+p):
+  - Arduino AVR Boards, 1.8.6
 
 The vscode extension uses the included arduino cli but you still need g++, Install packages (ubuntu):
 
@@ -30,12 +30,12 @@ MODE="0666"
 
 ## Hardware
 
-* [Arduino Micro](https://docs.arduino.cc/hardware/micro/)
-* [Adafruit LSM6D33 + LIS3MDL 9-DoF IMU](https://www.adafruit.com/product/4485)
+- [Arduino Micro](https://docs.arduino.cc/hardware/micro/)
+- [Adafruit LSM6D33 + LIS3MDL 9-DoF IMU](https://www.adafruit.com/product/4485)
 
 ## Library references
 
-* [Arduino Mbed OS Nano Boards](https://github.com/arduino/ArduinoCore-mbed)
-* [Adafruit_LSM6DS3](https://github.com/adafruit/Adafruit_LSM6DS)
-* [Adafruit_LIS3MDL](https://github.com/adafruit/Adafruit_LIS3MDL)
-* [Mouse](https://www.arduino.cc/reference/en/libraries/mouse/)
+- [Arduino Mbed OS Nano Boards](https://github.com/arduino/ArduinoCore-mbed)
+- [Adafruit_LSM6DS3](https://github.com/adafruit/Adafruit_LSM6DS)
+- [Adafruit_LIS3MDL](https://github.com/adafruit/Adafruit_LIS3MDL)
+- [Mouse](https://www.arduino.cc/reference/en/libraries/mouse/)

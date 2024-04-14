@@ -1,7 +1,7 @@
 {
     "port": "/dev/ttyACM0",
-    "board": "arduino:avr:micro",
+    "board": "arduino:mbed_nano:nano33ble",
     "programmer": "stlink",
-    "sketch": "arduino/arduino.ino",
+    "sketch": "nano/nano.ino",
     "output": "arduino/build"
 }
